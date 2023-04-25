@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 version = "0.0.0"
-name = "example-pyproject"
+name = "example-pyproject-setuptools"
 
 [tool.setuptools]
-py-modules = ["example_pyproject"]
+py-modules = ["example_pyproject_setuptools"]
 include-package-data = false

@@ -34,7 +34,18 @@ def demo(mode):
                 "pip",
                 "install",
                 *(("-e",) if mode == "editable" else ()),
-                "src/example_pyproject",
+                "src/example_pyproject_setuptools",
+            ],
+            check=True,
+        )
+        subprocess.run(
+            [
+                v / "bin" / "python",
+                "-m",
+                "pip",
+                "install",
+                *(("-e",) if mode == "editable" else ()),
+                "src/example_pyproject_hatchling",
             ],
             check=True,
         )
@@ -51,11 +62,20 @@ def demo(mode):
             [
                 v / "bin" / "python",
                 "-c",
-                "import example_pyproject; print(example_pyproject.source)",
+                "import example_pyproject_setuptools; print(example_pyproject_setuptools.source)",
             ],
             check=True,
         )
-        print(f"=== pyproject {mode=} succeeded ===")
+        print(f"=== pyproject setuptools {mode=} succeeded ===")
+        subprocess.run(
+            [
+                v / "bin" / "python",
+                "-c",
+                "import example_pyproject_hatchling; print(example_pyproject_hatchling.source)",
+            ],
+            check=True,
+        )
+        print(f"=== pyproject hatchling {mode=} succeeded ===")
 
 
 def main():
